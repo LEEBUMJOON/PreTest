@@ -8,20 +8,30 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.KakaopayPreTest.insurance.repository.InstituteRepository;
 import com.KakaopayPreTest.insurance.service.CsvFileUpLoadService;
+import com.KakaopayPreTest.insurance.service.InstituteService;
 
 @SpringBootTest
 class CsvFileUpLoadServiceTest {
 
-	CsvFileUpLoadService csvService;
+	@Autowired
+	 InstituteRepository instituteRepository;
+	
+	 CsvFileUpLoadService csvService;
+	
+	 private InstituteService instituteService;
+	
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		csvService =  new CsvFileUpLoadService();	
+		csvService =  new CsvFileUpLoadService(instituteService);	
+		instituteService = new InstituteService( instituteRepository );
 	}
 
 	@Test
