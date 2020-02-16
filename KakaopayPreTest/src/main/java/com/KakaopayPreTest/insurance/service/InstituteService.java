@@ -23,8 +23,7 @@ public class InstituteService {
 		Institute institute =  new Institute();
 		institute.setName(instituteName);
 		institute.setCode(instituteCode);
-		 instituteRepository.save(institute);
-		return institute;
+		return  instituteRepository.save(institute);
 	}
 
 }

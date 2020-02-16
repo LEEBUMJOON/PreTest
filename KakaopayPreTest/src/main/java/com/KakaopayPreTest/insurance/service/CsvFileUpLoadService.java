@@ -15,6 +15,8 @@ import com.KakaopayPreTest.insurance.repository.InstituteRepository;
 import com.KakaopayPreTest.insurance.util.ConstantsVariable;
 import com.KakaopayPreTest.insurance.util.CsvReader;
 
+import antlr.StringUtils;
+
 @Service
 public class CsvFileUpLoadService {
 	
@@ -31,6 +33,8 @@ public class CsvFileUpLoadService {
 	public List<String[]> upLoad(MultipartFile file ) throws IOException{
 		List<String[]> csvData = readCsvFile(file); 
 		List<String> headLine = getHeadLine(csvData);
+		
+		saveInstitute(headLine);
 		
 		return csvData;
 	}
@@ -49,7 +53,9 @@ public class CsvFileUpLoadService {
 		String[] headerArray = csvData.get(ConstantsVariable.HEAD_LINE_IDX);
 		
 		for(int i = ConstantsVariable.HEAD_START_IDX ; i < headerArray.length ; i++) {
+			if (headerArray[i]!= null  ||  headerArray[i] != " ") {
 			header.add(headerArray[i]);
+			}
 		}
 		
 		return header;
