@@ -11,14 +11,14 @@ import com.KakaopayPreTest.insurance.repository.InstituteRepository;
 public class InstituteService {
 	
 	
-	private InstituteRepository instituteRepository;
+	private final InstituteRepository instituteRepository;
 	
 	
-	public InstituteService(InstituteRepository instituteRepository) {	
+	public InstituteService(final InstituteRepository instituteRepository) {	
 		this.instituteRepository = instituteRepository;
 	}
 
-	@Transactional
+	@Transactional()
 	public Institute save(String instituteName, String instituteCode  ) { 
 		Institute institute =  new Institute();
 		institute.setName(instituteName);

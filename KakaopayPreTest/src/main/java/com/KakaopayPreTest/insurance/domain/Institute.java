@@ -10,22 +10,14 @@ import javax.persistence.Id;
 public class Institute {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private Long id;
 	
-	@Column(nullable = false, length = 50)
+	@Column
     private String name;
 
-    @Column(nullable = false, length = 10)
+    @Column
     private String code;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;

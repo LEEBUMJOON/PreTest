@@ -25,13 +25,13 @@ class CsvFileUpLoadServiceTest {
 	
 	 CsvFileUpLoadService csvService;
 	
-	 private InstituteService instituteService;
+	  InstituteService instituteService;
 	
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		csvService =  new CsvFileUpLoadService(instituteService);	
 		instituteService = new InstituteService( instituteRepository );
+		csvService =  new CsvFileUpLoadService(instituteService);		
 	}
 
 	@Test
