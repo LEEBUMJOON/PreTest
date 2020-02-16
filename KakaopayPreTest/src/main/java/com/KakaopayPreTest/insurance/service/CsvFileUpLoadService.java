@@ -9,13 +9,9 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.KakaopayPreTest.insurance.domain.Institute;
 import com.KakaopayPreTest.insurance.domain.InstituteInfo;
-import com.KakaopayPreTest.insurance.repository.InstituteRepository;
 import com.KakaopayPreTest.insurance.util.ConstantsVariable;
 import com.KakaopayPreTest.insurance.util.CsvReader;
-
-import antlr.StringUtils;
 
 @Service
 public class CsvFileUpLoadService {
