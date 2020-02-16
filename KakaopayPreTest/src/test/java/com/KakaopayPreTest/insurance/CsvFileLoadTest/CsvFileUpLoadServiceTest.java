@@ -60,12 +60,12 @@ class CsvFileUpLoadServiceTest {
 		
 		List<String[]> csvData = csvService.upLoad(result);
 		Institute test  = new Institute();
-		System.out.println("---------------------------------");
-		System.out.println( instituteRepository.findById(1L));
-		System.out.println("---------------------------------");
-		Amount amount = instituteAmountRepository.findById(140L).orElse(null);
-		System.out.println( instituteAmountRepository.findAll().size());
-		System.out.println(amount.getAmount());
+//		System.out.println("---------------------------------");
+//		System.out.println( instituteRepository.findById(1L));
+//		System.out.println("---------------------------------");
+//		Amount amount = instituteAmountRepository.findById(140L).orElse(null);
+//		System.out.println( instituteAmountRepository.findAll().size());
+//		System.out.println(amount.getAmount());
 		
 //		test = instituteRepository.findById(1L).orElse(test);
 //		System.out.println(test.getCode());

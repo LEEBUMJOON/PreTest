@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.KakaopayPreTest.insurance.domain.Institute;
 import com.KakaopayPreTest.insurance.domain.InstituteInfo;
+import com.KakaopayPreTest.insurance.response.dto.FileUpLoadResponseDto;
 import com.KakaopayPreTest.insurance.util.ConstantsVariable;
 import com.KakaopayPreTest.insurance.util.CsvReader;
 import com.KakaopayPreTest.insurance.util.TestUtil;
@@ -35,7 +36,7 @@ public class CsvFileUpLoadService {
 	 * @throws IOException
 	 */
 	@Transactional
-	public List<String[]> upLoad(MultipartFile file ) throws IOException{
+	public FileUpLoadResponseDto upLoad(MultipartFile file ) throws IOException{
 		List<String[]> csvData = readCsvFile(file); 
 		List<String> headLine = getHeadLine(csvData);		
 		List<List<String>> dataLine = getAmountData(csvData);
@@ -43,7 +44,11 @@ public class CsvFileUpLoadService {
 		saveInstitute(headLine);
 		saveInstituteAmount(dataLine);
 		
-		return csvData;
+		FileUpLoadResponseDto fileUpLoadResponseDto = new FileUpLoadResponseDto();
+		fileUpLoadResponseDto.setFileName(file.getOriginalFilename());
+		fileUpLoadResponseDto.setFileContentType(file.getContentType());
+		fileUpLoadResponseDto.setFileSize(file.getSize());
+		return fileUpLoadResponseDto;
 	}
 	
 	
