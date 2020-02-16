@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.KakaopayPreTest.insurance.domain.Institute;
@@ -110,9 +109,12 @@ public class CsvFileUpLoadService {
 			String year = rowData.get(ConstantsVariable.YEAR_IDX);
 			String  month = rowData.get(ConstantsVariable.MONTH_IDX);
 			
-			for(int i = ConstantsVariable.HEAD_START_IDX ; i < rowData.size() ; i++) {		
+			for(int i = ConstantsVariable.HEAD_START_IDX ; i < rowData.size() ; i++) {
+				int amount = 0 ;
+				if (StringUtils.isNotEmpty(rowData.get(i))) {
+					 amount =Integer.parseInt(rowData.get(i).replaceAll(",", ""));
+				}
 				
-				int amount =Integer.parseInt(rowData.get(i).replaceAll(",", ""));
 				Institute institute = instituteService.getInstitute((long)i-1);
 				instituteService.amountSave(year, month, institute, amount);				
 			}

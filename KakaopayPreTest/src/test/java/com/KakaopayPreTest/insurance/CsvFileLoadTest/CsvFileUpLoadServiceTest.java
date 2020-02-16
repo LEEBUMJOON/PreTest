@@ -58,7 +58,7 @@ class CsvFileUpLoadServiceTest {
 		                     originalFileName, contentType, content);
 			
 		
-		List<String[]> csvData = csvService.upLoad(result);
+//		List<String[]> csvData = csvService.upLoad(result);
 		Institute test  = new Institute();
 //		System.out.println("---------------------------------");
 //		System.out.println( instituteRepository.findById(1L));
