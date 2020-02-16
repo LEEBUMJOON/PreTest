@@ -1,3 +1,2 @@
-spring :
-  jpa: 
-    sql-show: true 
+spring:  
+  jpa:    show-sql: true

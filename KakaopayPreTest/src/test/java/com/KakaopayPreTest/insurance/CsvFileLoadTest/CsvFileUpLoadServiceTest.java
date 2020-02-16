@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.KakaopayPreTest.insurance.domain.Amount;
+import com.KakaopayPreTest.insurance.domain.Institute;
+import com.KakaopayPreTest.insurance.repository.InstituteAmountRepository;
 import com.KakaopayPreTest.insurance.repository.InstituteRepository;
 import com.KakaopayPreTest.insurance.service.CsvFileUpLoadService;
 import com.KakaopayPreTest.insurance.service.InstituteService;
@@ -23,6 +27,9 @@ class CsvFileUpLoadServiceTest {
 	@Autowired
 	 InstituteRepository instituteRepository;
 	
+	@Autowired
+	InstituteAmountRepository instituteAmountRepository; 
+	
 	 CsvFileUpLoadService csvService;
 	
 	  InstituteService instituteService;
@@ -30,7 +37,7 @@ class CsvFileUpLoadServiceTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		instituteService = new InstituteService( instituteRepository );
+		instituteService = new InstituteService( instituteRepository , instituteAmountRepository);
 		csvService =  new CsvFileUpLoadService(instituteService);		
 	}
 
@@ -52,8 +59,23 @@ class CsvFileUpLoadServiceTest {
 			
 		
 		List<String[]> csvData = csvService.upLoad(result);
+		Institute test  = new Institute();
+		System.out.println("---------------------------------");
+		System.out.println( instituteRepository.findById(1L));
+		System.out.println("---------------------------------");
+		Amount amount = instituteAmountRepository.findById(140L).orElse(null);
+		System.out.println( instituteAmountRepository.findAll().size());
+		System.out.println(amount.getAmount());
 		
-		System.out.println(csvData);
+//		test = instituteRepository.findById(1L).orElse(test);
+//		System.out.println(test.getCode());
+//		System.out.println(test.getName());
+
+	}
+	
+	@Test
+   void UitlsTest() { 
+		System.out.println(StringUtils.isNotEmpty(StringUtils.trim(" ")));
 	}
 
 }
