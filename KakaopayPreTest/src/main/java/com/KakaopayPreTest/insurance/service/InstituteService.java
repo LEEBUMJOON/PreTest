@@ -3,6 +3,7 @@ package com.KakaopayPreTest.insurance.service;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ import com.KakaopayPreTest.insurance.domain.Institute;
 import com.KakaopayPreTest.insurance.repository.InstituteAmountRepository;
 import com.KakaopayPreTest.insurance.repository.InstituteRepository;
 import com.KakaopayPreTest.insurance.response.dto.InstituteListResponseDto;
+import com.KakaopayPreTest.insurance.response.dto.IntituteDetailTotalAmountDto;
+import com.KakaopayPreTest.insurance.response.dto.IntituteTotalYearDto;
 
 @Service
 public class InstituteService {
@@ -59,6 +62,53 @@ public class InstituteService {
 		}
 		
 		return result;
+	}
+	
+	public List<IntituteTotalYearDto> getAmoutTotal() {		
+		List<Object[]> instituteTotalYear = instituteAmountRepository.getAmountTotalYear();		
+		
+		List<Object[]>instituteDetailTotalList = instituteAmountRepository.getDetailAmount();
+		
+		HashMap<String,IntituteDetailTotalAmountDto> retultMap= buildMapIntituteDetailTotalAmount(instituteDetailTotalList);
+		
+		List<IntituteTotalYearDto> InstituteTotalYearDtoList = bulidIntituteTotalYearDto(instituteTotalYear, retultMap);
+
+		
+		return InstituteTotalYearDtoList;
+	}
+	
+	public List<IntituteTotalYearDto> bulidIntituteTotalYearDto (List<Object[]> instituteTotalYear , HashMap<String,IntituteDetailTotalAmountDto> parmMap){
+		List<IntituteTotalYearDto> InstituteTotalYearDtoList = new ArrayList<>();
+		for(Object[] obj : instituteTotalYear) {
+			
+			IntituteTotalYearDto intituteTotalYearDto = new IntituteTotalYearDto();
+			intituteTotalYearDto.setYear(obj[0].toString());
+			
+			intituteTotalYearDto.setAmount(Integer.parseInt(obj[1].toString()));
+			intituteTotalYearDto.getIntituteDetailTotalAmountDtoList().add( parmMap.get(intituteTotalYearDto.getYear()) );
+			
+			InstituteTotalYearDtoList.add(intituteTotalYearDto);			
+			
+		}				
+		return  InstituteTotalYearDtoList;
+	}
+
+		
+	public HashMap<String, IntituteDetailTotalAmountDto> buildMapIntituteDetailTotalAmount( List<Object[]> instituteDetailTotalList ){				
+		HashMap<String,  IntituteDetailTotalAmountDto>  resultMap = new HashMap<>();
+		for(Object[] obj : instituteDetailTotalList) {
+			String strKey = String.format("%s" ,  obj[0].toString());  //년도 key 
+			
+			IntituteDetailTotalAmountDto intituteDetailTotalAmountDto = new IntituteDetailTotalAmountDto();
+			
+			intituteDetailTotalAmountDto.setName(obj[1].toString()); //기관명
+			intituteDetailTotalAmountDto.setAmount(Integer.parseInt(obj[2].toString())); // 금액 
+			
+			 resultMap.put(strKey , intituteDetailTotalAmountDto );			
+		}
+		
+		return resultMap;
+		
 	}
 
 }

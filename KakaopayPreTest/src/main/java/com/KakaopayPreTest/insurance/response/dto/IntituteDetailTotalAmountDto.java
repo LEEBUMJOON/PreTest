@@ -4,6 +4,8 @@ public class IntituteDetailTotalAmountDto {
 	
 	private String name;
 	
+	private String code;
+	
 	private int amount;
 
 	public String getName() {
