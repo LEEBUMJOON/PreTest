@@ -64,6 +64,7 @@ public class InstituteService {
 		return result;
 	}
 	
+	@Transactional(readOnly = true)
 	public List<IntituteTotalYearDto> getAmoutTotal() {		
 		List<Object[]> instituteTotalYear = instituteAmountRepository.getAmountTotalYear();		
 		

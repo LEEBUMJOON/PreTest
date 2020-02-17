@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.KakaopayPreTest.insurance.response.dto.InstituteListResponseDto;
+import com.KakaopayPreTest.insurance.response.dto.IntituteTotalYearDto;
 import com.KakaopayPreTest.insurance.service.InstituteService;
 
 @RestController
@@ -27,6 +28,13 @@ public class InstituteController {
 		List<InstituteListResponseDto> InstituteListResponseDtoList = instituteService.getInstitueList();
 		
 		return new ResponseEntity<>(InstituteListResponseDtoList , HttpStatus.OK);
+	}
+	
+	@GetMapping("/Instiute/Year")
+	public ResponseEntity<?> getAmoutTotalYear(){
+		List<IntituteTotalYearDto> intituteTotalYearDtoList =  instituteService.getAmoutTotal();
+		
+		return new ResponseEntity<>(intituteTotalYearDtoList , HttpStatus.OK);
 	}
 	
 }
