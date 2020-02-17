@@ -19,6 +19,7 @@ public interface InstituteAmountRepository extends JpaRepository< Amount , Long>
 	@Query(value = "SELECT AMT.YEAR, INS.NAME, SUM(AMT.AMOUNT) \n" +
 										   "FROM AMOUNT AS AMT INNER JOIN INSTITUTE AS INS \n" +
 										   "ON AMT.INSTITUTION_ID  = INS.ID \n"+
-										   "GROUP BY AMT.YEAR,  INS.NAME",  nativeQuery =  true)
+										   "GROUP BY AMT.YEAR,  INS.NAME \n" + 
+										   "ORDER BY SUM(AMT.AMOUNT) DESC",  nativeQuery =  true)
 	List<Object[]> getDetailAmount();
 }

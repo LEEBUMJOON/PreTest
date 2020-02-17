@@ -24,7 +24,8 @@ class InstituteAmountRepositoryTest {
 	void testAmountSelect() {
 //		fail("Not yet implemented");
 		System.out.println("------------------");
-		instituteAmountRepository.getAmountTotalYear();
+		//instituteAmountRepository.getAmountTotalYear();
+		instituteAmountRepository.getDetailAmount();
 		System.out.println("------------------");		
 	}
 	
