@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,10 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.KakaopayPreTest.insurance.domain.Amount;
-import com.KakaopayPreTest.insurance.domain.Institute;
 import com.KakaopayPreTest.insurance.repository.InstituteAmountRepository;
 import com.KakaopayPreTest.insurance.repository.InstituteRepository;
+import com.KakaopayPreTest.insurance.response.dto.FileUpLoadResponseDto;
 import com.KakaopayPreTest.insurance.service.CsvFileUpLoadService;
 import com.KakaopayPreTest.insurance.service.InstituteService;
 
@@ -58,18 +56,12 @@ class CsvFileUpLoadServiceTest {
 		                     originalFileName, contentType, content);
 			
 		
-//		List<String[]> csvData = csvService.upLoad(result);
-		Institute test  = new Institute();
-//		System.out.println("---------------------------------");
-//		System.out.println( instituteRepository.findById(1L));
-//		System.out.println("---------------------------------");
-//		Amount amount = instituteAmountRepository.findById(140L).orElse(null);
-//		System.out.println( instituteAmountRepository.findAll().size());
-//		System.out.println(amount.getAmount());
-		
-//		test = instituteRepository.findById(1L).orElse(test);
-//		System.out.println(test.getCode());
-//		System.out.println(test.getName());
+		FileUpLoadResponseDto FileUpLoadResponseDto =csvService.upLoad(result);		
+		System.out.println("---------------------------------");
+		System.out.println( instituteRepository.findById(1L));
+		System.out.println("---------------------------------");
+		System.out.println( instituteAmountRepository.findAll());
+
 
 	}
 	
