@@ -45,5 +45,14 @@ class InstituteAmountRepositoryTest {
 		
 		System.out.println("------------------");		
 	}
+	
+	@Test
+	void testMinMax() {
+		List<Object[]> instituteMinMaxList = instituteAmountRepository.getInstitueMinMaxAvg("B07"); // 평균값 기준  오름차순  정렬
+		if (instituteMinMaxList != null &&  instituteMinMaxList.size() > 0) {
+			Object[] obj = instituteMinMaxList.get(0);
+		}
+		System.out.println("------------------");		
+	}
 
 }

@@ -2,9 +2,11 @@ package com.KakaopayPreTest.insurance.controller;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.KakaopayPreTest.insurance.response.dto.InstituteAmountMaxResponseDto;
@@ -43,6 +45,12 @@ public class InstituteController {
 		InstituteAmountMaxResponseDto instituteAmountMaxResponseDto = instituteService.getInstituteAmountMax();
 		
 		return new ResponseEntity<>(instituteAmountMaxResponseDto , HttpStatus.OK);
+	}
+	
+	@GetMapping("/Instiute/Year/MinMax")
+	public ResponseEntity<?> getInstituteAmountMinMax(@RequestParam(value = "name") String bankName) { 
+		
+		return new ResponseEntity<>(" " ,HttpStatus.OK );
 	}
 	
 }

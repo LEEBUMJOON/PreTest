@@ -11,12 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.KakaopayPreTest.insurance.domain.Amount;
 import com.KakaopayPreTest.insurance.domain.Institute;
+import com.KakaopayPreTest.insurance.domain.InstituteInfo;
 import com.KakaopayPreTest.insurance.repository.InstituteAmountRepository;
 import com.KakaopayPreTest.insurance.repository.InstituteRepository;
 import com.KakaopayPreTest.insurance.response.dto.InstituteAmountMaxResponseDto;
 import com.KakaopayPreTest.insurance.response.dto.InstituteListResponseDto;
+import com.KakaopayPreTest.insurance.response.dto.InstituteMinMaxResponseDto;
 import com.KakaopayPreTest.insurance.response.dto.IntituteDetailTotalAmountDto;
 import com.KakaopayPreTest.insurance.response.dto.IntituteTotalYearDto;
+import com.KakaopayPreTest.insurance.response.dto.SupportAmountDto;
 
 @Service
 public class InstituteService {
@@ -128,6 +131,31 @@ public class InstituteService {
 		
 		return instituteAmountMaxResponseDto;
 		
+	}
+	
+	@Transactional(readOnly = true)
+	public InstituteMinMaxResponseDto getInstituteMinMaxAvg(String bankName) {
+		InstituteMinMaxResponseDto instituteMinMaxResponseDto = new InstituteMinMaxResponseDto();
+		String bankCode = InstituteInfo.covertNameToCode(bankName);
+		instituteMinMaxResponseDto.setBank(bankName);
+		List<Object[]> instituteMinMaxList = instituteAmountRepository.getInstitueMinMaxAvg(bankCode); // 평균값 기준  오름차순  정렬  
+
+		//최소값	
+		Object[] objMin = instituteMinMaxList.get(0);
+		SupportAmountDto supportAmountMinDto = new SupportAmountDto();
+		supportAmountMinDto.setYear(objMin[0].toString());
+		supportAmountMinDto.setAmount(Integer.parseInt(objMin[1].toString()));
+		instituteMinMaxResponseDto.getSupportAmountDto().add(supportAmountMinDto);
+		
+		//최대값
+		Object[] objMax = instituteMinMaxList.get(instituteMinMaxList.size()-1);
+		SupportAmountDto supportAmountMaxDto = new SupportAmountDto();
+		supportAmountMinDto.setYear(objMax[0].toString());
+		supportAmountMinDto.setAmount(Integer.parseInt(objMax[1].toString()));
+		instituteMinMaxResponseDto.getSupportAmountDto().add(supportAmountMaxDto);
+
+		
+		return instituteMinMaxResponseDto;
 	}
 
 }
