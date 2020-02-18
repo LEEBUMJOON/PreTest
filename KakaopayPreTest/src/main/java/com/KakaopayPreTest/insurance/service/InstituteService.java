@@ -13,6 +13,7 @@ import com.KakaopayPreTest.insurance.domain.Amount;
 import com.KakaopayPreTest.insurance.domain.Institute;
 import com.KakaopayPreTest.insurance.repository.InstituteAmountRepository;
 import com.KakaopayPreTest.insurance.repository.InstituteRepository;
+import com.KakaopayPreTest.insurance.response.dto.InstituteAmountMaxResponseDto;
 import com.KakaopayPreTest.insurance.response.dto.InstituteListResponseDto;
 import com.KakaopayPreTest.insurance.response.dto.IntituteDetailTotalAmountDto;
 import com.KakaopayPreTest.insurance.response.dto.IntituteTotalYearDto;
@@ -78,7 +79,7 @@ public class InstituteService {
 		return InstituteTotalYearDtoList;
 	}
 	
-	public List<IntituteTotalYearDto> bulidIntituteTotalYearDto (List<Object[]> instituteTotalYear , HashMap<String,IntituteDetailTotalAmountDto> parmMap){
+	private List<IntituteTotalYearDto> bulidIntituteTotalYearDto (List<Object[]> instituteTotalYear , HashMap<String,IntituteDetailTotalAmountDto> parmMap){
 		List<IntituteTotalYearDto> InstituteTotalYearDtoList = new ArrayList<>();
 		for(Object[] obj : instituteTotalYear) {
 			
@@ -93,9 +94,10 @@ public class InstituteService {
 		}				
 		return  InstituteTotalYearDtoList;
 	}
-
-		
-	public HashMap<String, IntituteDetailTotalAmountDto> buildMapIntituteDetailTotalAmount( List<Object[]> instituteDetailTotalList ){				
+ /**
+		DTO LIST - > MAP으로  변환		 
+		*/ 
+	private HashMap<String, IntituteDetailTotalAmountDto> buildMapIntituteDetailTotalAmount( List<Object[]> instituteDetailTotalList ){				
 		HashMap<String,  IntituteDetailTotalAmountDto>  resultMap = new HashMap<>();
 		for(Object[] obj : instituteDetailTotalList) {
 			String strKey = String.format("%s" ,  obj[0].toString());  //년도 key 
@@ -109,6 +111,22 @@ public class InstituteService {
 		}
 		
 		return resultMap;
+		
+	}
+	
+	@Transactional(readOnly = true)
+	public InstituteAmountMaxResponseDto getInstituteAmountMax() {
+		InstituteAmountMaxResponseDto instituteAmountMaxResponseDto = new InstituteAmountMaxResponseDto();
+		
+		List<Object[]>instituteDetailTotalList = instituteAmountRepository.getDetailAmount();
+		
+		Object[] obj = instituteDetailTotalList.get(0);
+		
+		instituteAmountMaxResponseDto.setYear(obj[0].toString());
+		instituteAmountMaxResponseDto.setBank(obj[1].toString());
+			
+		
+		return instituteAmountMaxResponseDto;
 		
 	}
 

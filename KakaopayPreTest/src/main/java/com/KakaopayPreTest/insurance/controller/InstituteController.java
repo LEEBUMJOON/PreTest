@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.KakaopayPreTest.insurance.response.dto.InstituteAmountMaxResponseDto;
 import com.KakaopayPreTest.insurance.response.dto.InstituteListResponseDto;
 import com.KakaopayPreTest.insurance.response.dto.IntituteTotalYearDto;
 import com.KakaopayPreTest.insurance.service.InstituteService;
@@ -35,6 +36,13 @@ public class InstituteController {
 		List<IntituteTotalYearDto> intituteTotalYearDtoList =  instituteService.getAmoutTotal();
 		
 		return new ResponseEntity<>(intituteTotalYearDtoList , HttpStatus.OK);
+	}
+	
+	@GetMapping("/Instiute/Year/Max")
+	public ResponseEntity<?> getInstituteAmountMax(){
+		InstituteAmountMaxResponseDto instituteAmountMaxResponseDto = instituteService.getInstituteAmountMax();
+		
+		return new ResponseEntity<>(instituteAmountMaxResponseDto , HttpStatus.OK);
 	}
 	
 }
