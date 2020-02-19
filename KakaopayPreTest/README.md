@@ -141,8 +141,7 @@
  -  집계함수(Avg)사용, 년도(year), 기관_id(id) 를 기준 group by.
  -  집계함수(Avg) 기준으로 order by asc(오름차순 정렬) List 첫번째 값 min list.size()-1 값 max  
  
-## 6. 후기 
- - select 서비스의 경우 Mybatis 연동 cud 서비스는  기존 JPA 를 함께 사용 하여 변경 필요  
+
     
  
 
