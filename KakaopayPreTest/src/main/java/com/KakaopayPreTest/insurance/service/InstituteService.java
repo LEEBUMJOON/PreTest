@@ -122,12 +122,12 @@ public class InstituteService {
 		InstituteAmountMaxResponseDto instituteAmountMaxResponseDto = new InstituteAmountMaxResponseDto();
 		
 		List<Object[]>instituteDetailTotalList = instituteAmountRepository.getDetailAmount();
-		
-		Object[] obj = instituteDetailTotalList.get(0);
-		
-		instituteAmountMaxResponseDto.setYear(obj[0].toString());
-		instituteAmountMaxResponseDto.setBank(obj[1].toString());
-			
+		if (instituteDetailTotalList != null && instituteDetailTotalList.size() > 0) {
+			Object[] obj = instituteDetailTotalList.get(0);
+
+			instituteAmountMaxResponseDto.setYear(obj[0].toString());
+			instituteAmountMaxResponseDto.setBank(obj[1].toString());
+		}
 		
 		return instituteAmountMaxResponseDto;
 		

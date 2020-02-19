@@ -1,7 +1,5 @@
 package com.KakaopayPreTest.insurance.domain;
 
-import antlr.StringUtils;
-
 public enum InstituteInfo {
 	
 	NHUF("주택도시기금", "P01"),

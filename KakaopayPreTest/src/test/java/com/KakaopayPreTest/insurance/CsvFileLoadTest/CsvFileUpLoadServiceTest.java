@@ -5,9 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
@@ -21,6 +22,8 @@ import com.KakaopayPreTest.insurance.service.InstituteService;
 
 @SpringBootTest
 class CsvFileUpLoadServiceTest {
+	
+	private static final Logger log = LoggerFactory.getLogger(CsvFileUpLoadServiceTest.class);
 
 	@Autowired
 	 InstituteRepository instituteRepository;
@@ -56,18 +59,14 @@ class CsvFileUpLoadServiceTest {
 		                     originalFileName, contentType, content);
 			
 		
-		FileUpLoadResponseDto FileUpLoadResponseDto =csvService.upLoad(result);		
-		System.out.println("---------------------------------");
-		System.out.println( instituteRepository.findById(1L));
-		System.out.println("---------------------------------");
-		System.out.println( instituteAmountRepository.findAll());
-
+		FileUpLoadResponseDto fileUpLoadResponseDto =csvService.upLoad(result);		
+		log.debug("----------------Strart response-------------------------");
+		log.debug( fileUpLoadResponseDto.getFileName());
+		log.debug(fileUpLoadResponseDto.getFileContentType() );
+		log.debug(String.valueOf(fileUpLoadResponseDto.getFileSize() ));
+		
 
 	}
 	
-	@Test
-   void UitlsTest() { 
-		System.out.println(StringUtils.isNotEmpty(StringUtils.trim(" ")));
-	}
 
 }
