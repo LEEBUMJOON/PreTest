@@ -138,22 +138,22 @@ public class InstituteService {
 		InstituteMinMaxResponseDto instituteMinMaxResponseDto = new InstituteMinMaxResponseDto();
 		String bankCode = InstituteInfo.covertNameToCode(bankName);
 		instituteMinMaxResponseDto.setBank(bankName);
-		List<Object[]> instituteMinMaxList = instituteAmountRepository.getInstitueMinMaxAvg(bankCode); // 평균값 기준  오름차순  정렬  
+		List<Object[]>   instituteMinMaxList = instituteAmountRepository.getInstitueMinMaxAvg(bankCode); // 평균값 기준  오름차순  정렬  
+		if (instituteMinMaxList != null && instituteMinMaxList.size() > 0) {
+			// 최소값
+			Object[] objMin = instituteMinMaxList.get(0);
+			SupportAmountDto supportAmountMinDto = new SupportAmountDto();
+			supportAmountMinDto.setYear(objMin[0].toString());
+			supportAmountMinDto.setAmount(Integer.parseInt(objMin[1].toString()));
+			instituteMinMaxResponseDto.getSupportAmountDto().add(supportAmountMinDto);
 
-		//최소값	
-		Object[] objMin = instituteMinMaxList.get(0);
-		SupportAmountDto supportAmountMinDto = new SupportAmountDto();
-		supportAmountMinDto.setYear(objMin[0].toString());
-		supportAmountMinDto.setAmount(Integer.parseInt(objMin[1].toString()));
-		instituteMinMaxResponseDto.getSupportAmountDto().add(supportAmountMinDto);
-		
-		//최대값
-		Object[] objMax = instituteMinMaxList.get(instituteMinMaxList.size()-1);
-		SupportAmountDto supportAmountMaxDto = new SupportAmountDto();
-		supportAmountMinDto.setYear(objMax[0].toString());
-		supportAmountMinDto.setAmount(Integer.parseInt(objMax[1].toString()));
-		instituteMinMaxResponseDto.getSupportAmountDto().add(supportAmountMaxDto);
-
+			// 최대값
+			Object[] objMax = instituteMinMaxList.get(instituteMinMaxList.size() - 1);
+			SupportAmountDto supportAmountMaxDto = new SupportAmountDto();
+			supportAmountMinDto.setYear(objMax[0].toString());
+			supportAmountMinDto.setAmount(Integer.parseInt(objMax[1].toString()));
+			instituteMinMaxResponseDto.getSupportAmountDto().add(supportAmountMaxDto);
+		}
 		
 		return instituteMinMaxResponseDto;
 	}

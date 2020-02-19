@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.KakaopayPreTest.insurance.response.dto.InstituteAmountMaxResponseDto;
 import com.KakaopayPreTest.insurance.response.dto.InstituteListResponseDto;
+import com.KakaopayPreTest.insurance.response.dto.InstituteMinMaxResponseDto;
 import com.KakaopayPreTest.insurance.response.dto.IntituteTotalYearDto;
 import com.KakaopayPreTest.insurance.service.InstituteService;
 
@@ -48,9 +49,9 @@ public class InstituteController {
 	}
 	
 	@GetMapping("/Instiute/Year/MinMax")
-	public ResponseEntity<?> getInstituteAmountMinMax(@RequestParam(value = "name") String bankName) { 
-		
-		return new ResponseEntity<>(" " ,HttpStatus.OK );
+	public ResponseEntity<?> getInstituteAmountMinMax(@RequestParam(value = "bankname") String bankName) { 
+		InstituteMinMaxResponseDto instituteMinMaxResponseDto =  instituteService.getInstituteMinMaxAvg(bankName);
+		return new ResponseEntity<>(instituteMinMaxResponseDto ,HttpStatus.OK );
 	}
 	
 }

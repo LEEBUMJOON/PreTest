@@ -22,7 +22,7 @@ public class Amount {
 	private Long id;
 	
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "institution_id")
+    @JoinColumn(name = "institutie_id")
     private Institute institute;
 	
 	@Column
