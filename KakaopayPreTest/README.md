@@ -11,7 +11,7 @@
     - JPA
     - H2
     - Gradle
-    - Junit5
+    - Junit  
 
 
 - Á¢¼Ó Base URI: `http://localhost:8080`
