@@ -13,4 +13,6 @@ public class ConstantsVariable {
 	public static final int YEAR_IDX = 0;
 	
 	public static final int MONTH_IDX = 1;
+	
+	public static final String DEFAULT_PRE_STRING = "C";
 }
