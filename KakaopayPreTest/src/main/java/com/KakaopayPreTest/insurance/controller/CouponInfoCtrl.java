@@ -32,41 +32,19 @@ public class CouponInfoCtrl {
 	}
 	
 	/**
+	 *  API 1. 랜덤한 코드의 쿠폰을 N개 생성하여 데이터베이스에 보관하는 API
 	 *  count 갯수 만큼 쿠폰 생성
 	 *  쿠폰 번호 형식 
 	 *  "문자(C)" +현재일자 +"브랜드코드 "+ 일련번호 17자리 =  C 20210320 0001 4966
 	 *  쿠폰유효기간은 현재일자 ~ 현재일자 +3개월 
-	 *  API 1. 랜덤한 코드의 쿠폰을 N개 생성하여 데이터베이스에 보관하는 API
 	 * @param count
 	 * @return
 	 */
 	@PostMapping("/coupon/create")
 	public ResponseEntity<?> createCoupon(@RequestParam(value = "count") int  count) {
+	
+		CouponLitDto couponListDto = couponService.createCoupon(count);
 		
-		CouponLitDto couponListDto = new CouponLitDto();  
-		ArrayList<Coupon> couponList  = new ArrayList<Coupon>(); 
-		String code = "";
-		int cNum ;
-		double  cRandomNumber;
-		String cStr = "";
-
-		for (int i = 0; i <= count; i++) {
-			Coupon coupon = new Coupon();
-			cRandomNumber = Math.random();
-			cNum = (int) (cRandomNumber * 10000) + 1;
-			if (String.valueOf(cNum).length() < 4) {
-				cStr = StringUtil.lpad(String.valueOf(cNum), 4, '0');
-			}
-			code = ConstantsVariable.DEFAULT_PRE_STRING + DateUtil.getCurrentDate("") + "0001" + cStr;
-			coupon.setCode(code);
-			coupon.setApplStartDate(DateUtil.getCurrentDate(""));
-			coupon.setApplEndDate(DateUtil.addMonth(DateUtil.getCurrentDate(""), 3));
-			coupon.setIssuance("N");
-			couponList.add(coupon);
-		}
-		
-		couponListDto.setCouponList(couponList);
-		couponService.couponSave(couponListDto);
 		return new ResponseEntity<>(couponListDto ,HttpStatus.OK );
 	}
 	

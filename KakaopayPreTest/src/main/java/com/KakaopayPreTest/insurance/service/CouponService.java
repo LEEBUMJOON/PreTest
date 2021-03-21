@@ -12,6 +12,7 @@ import com.KakaopayPreTest.insurance.repository.CouponRepository;
 import com.KakaopayPreTest.insurance.repository.UserRepository;
 import com.KakaopayPreTest.insurance.response.dto.CouponLitDto;
 import com.KakaopayPreTest.insurance.response.dto.UserListDto;
+import com.KakaopayPreTest.insurance.util.ConstantsVariable;
 import com.KakaopayPreTest.insurance.util.DateUtil;
 import com.KakaopayPreTest.insurance.util.StringUtil;
 
@@ -43,6 +44,45 @@ public class CouponService {
 		for(Coupon coupon : couponList) {
 			couponRepository.save(coupon);
 		}
+	}
+	
+	/**
+	 * *  count 갯수 만큼 쿠폰 생성
+	 *  쿠폰 번호 형식 
+	 *  "문자(C)" +현재일자 +"브랜드코드 "+ 일련번호 17자리 =  C 20210320 0001 4966
+	 *  쿠폰유효기간은 현재일자 ~ 현재일자 +3개월 
+	 * @param count
+	 * @return
+	 */
+	@Transactional
+	public CouponLitDto createCoupon(int count) {
+		
+		CouponLitDto couponListDto = new CouponLitDto();  
+		ArrayList<Coupon> couponList  = new ArrayList<Coupon>(); 
+		String code = "";
+		int cNum ;
+		double  cRandomNumber;
+		String cStr = "";
+
+		for (int i = 0; i <= count; i++) {
+			Coupon coupon = new Coupon();
+			cRandomNumber = Math.random();
+			cNum = (int) (cRandomNumber * 10000) + 1;
+			if (String.valueOf(cNum).length() < 4) {
+				cStr = StringUtil.lpad(String.valueOf(cNum), 4, '0');
+			}
+			code = ConstantsVariable.DEFAULT_PRE_STRING + DateUtil.getCurrentDate("") + "0001" + cStr;
+			coupon.setCode(code); //쿠폰번호  
+			coupon.setApplStartDate(DateUtil.getCurrentDate("")); // 발급일자
+			coupon.setApplEndDate(DateUtil.addMonth(DateUtil.getCurrentDate(""), 3)); // 만료일자 
+			coupon.setIssuance("N"); // 지급여부 
+			couponList.add(coupon);
+		}
+		
+		couponListDto.setCouponList(couponList);
+		couponSave(couponListDto);
+		
+		return couponListDto;
 	}
 	
 	
