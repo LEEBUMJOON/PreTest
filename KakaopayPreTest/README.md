@@ -150,3 +150,14 @@
 	```
 		사용자 id : A0001  //   쿠폰번호 : C2021032100018897 // 사용여부 :   // 취소여부  : Y // 취소일자 : 20210321
 	```
+
+### 발급된 쿠폰중 만료 3일전 사용자에게 메세지(“쿠폰이 3일 후 만료됩니다.”)를 발송
+- Request ("/coupon/getexpcouponexpday") 
+- Controller : CouponInfoCtrl.getExpCouponExpDay , @RequestParam(value = "userId") String userId , @RequestParam(value = "expday") int expDay 
+- SERVICE : couponService.getExpCouponAnnou
+- UNIT TEST : CouponServiceTest.testGetCouponExpAnnoun
+- 출력예시
+
+	```
+		쿠폰이 3일 후 만료됩니다
+	```
