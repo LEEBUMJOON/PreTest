@@ -64,12 +64,14 @@ public class CouponService {
 		double  cRandomNumber;
 		String cStr = "";
 
-		for (int i = 0; i <= count; i++) {
+		for (int i = 0; i < count; i++) {
 			Coupon coupon = new Coupon();
 			cRandomNumber = Math.random();
 			cNum = (int) (cRandomNumber * 10000) + 1;
 			if (String.valueOf(cNum).length() < 4) {
 				cStr = StringUtil.lpad(String.valueOf(cNum), 4, '0');
+			}else {
+				cStr = String.valueOf(cNum);
 			}
 			code = ConstantsVariable.DEFAULT_PRE_STRING + DateUtil.getCurrentDate("") + "0001" + cStr;
 			coupon.setCode(code); //ÄíÆù¹øÈ£  

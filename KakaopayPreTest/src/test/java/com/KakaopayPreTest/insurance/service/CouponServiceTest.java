@@ -48,30 +48,14 @@ class CouponServiceTest {
 	@Commit
 	void testCouponSave() {
 
-		CouponLitDto couponListDto = new CouponLitDto();  
-		ArrayList<Coupon> couponList  = new ArrayList<Coupon>();
-		String code = "";
-		int cNum ;
-		double  cRandomNumber;
-		int count = 10;
-		for (int i = 0; i <= count; i++) {
-			Coupon coupon = new Coupon();
-			cRandomNumber = Math.random();
-			cNum = (int) (cRandomNumber * 10000) + 1;
-			code = ConstantsVariable.DEFAULT_PRE_STRING + DateUtil.getCurrentDate("") + "0001" + String.valueOf(cNum);
-			coupon.setCode(code);
-			coupon.setApplStartDate(DateUtil.getCurrentDate(""));
-			coupon.setApplEndDate(DateUtil.addMonth(DateUtil.getCurrentDate(""), 3));
-			coupon.setIssuance("N");
-			couponList.add(coupon);
+		CouponLitDto couponListDto = couponService.createCoupon(10);
+	
+		List<Coupon> couponList = couponRepository.findAll();
+		System.out.println("¹ß±Þ ÄíÆù °¹¼ö : " + couponList.size());		 
+		for(Coupon coupon : couponList) { 
+			System.out.println("ÄíÆù¹øÈ£ : " +  coupon.getCode());
 		}
-		
-		couponListDto.setCouponList(couponList);
-		
-		couponService.couponSave(couponListDto);
-		
-		
-		
+	
 	}
 	
 	/**
