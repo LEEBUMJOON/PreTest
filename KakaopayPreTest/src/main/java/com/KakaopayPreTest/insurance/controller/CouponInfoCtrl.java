@@ -85,7 +85,7 @@ public class CouponInfoCtrl {
 	 * @param userId
 	 * @return
 	 */
-	@GetMapping("coupon/getusercoupon")
+	@GetMapping("/coupon/getusercoupon")
 	public ResponseEntity<?> getUserCoupon(@RequestParam(value ="userid") String userId){
 		UserListDto userListDto = couponService.getUserCoupon(userId);
 		
@@ -98,7 +98,7 @@ public class CouponInfoCtrl {
 	 * @param useCls
 	 * @return
 	 */
-	@PostMapping("coupon/useCoupon")
+	@PostMapping("/coupon/useCoupon")
 	public ResponseEntity<?> useCoupon(@RequestParam(value ="code") String code ){
 
 		UserListDto userListDto =  couponService.userCouponUseByCode(code, "U");
@@ -113,7 +113,7 @@ public class CouponInfoCtrl {
 	 * @param useCls
 	 * @return
 	 */
-	@PostMapping("coupon/cancleCoupon")
+	@PostMapping("/coupon/cancleCoupon")
 	public ResponseEntity<?> cancleCoupon(@RequestParam(value ="code") String code){
 		
 		UserListDto userListDto =  couponService.userCouponUseByCode(code, "C");
