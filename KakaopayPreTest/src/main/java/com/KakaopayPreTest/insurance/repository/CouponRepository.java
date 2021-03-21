@@ -28,7 +28,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Long >{
 	 * @param appldate
 	 * @return
 	 */
-	@Query(value = "SELECT * FROM COUPON  WHERE APPL_END_DATE = :applDate ORDER BY APPL_START_DATE ASC "
+	@Query(value = "SELECT * FROM COUPON  WHERE APPL_END_DATE <= :applDate ORDER BY APPL_START_DATE ASC "
 			  , nativeQuery = true)
 	ArrayList<Coupon> getCouponExpiraedByDate(@Param("applDate" ) String appldate);
 }
