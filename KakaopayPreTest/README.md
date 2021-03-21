@@ -1,7 +1,7 @@
-# Ä«Ä«¿ÀÆäÀÌ »çÀü°úÁ¦ 3 - ÄíÆù ½Ã½ºÅÛ  
+#  ì‚¬ì „ê³¼ì œ 2 - ì¿ í° ì‹œìŠ¤í…œ  
 
-## °³¹ß È¯°æ  
-- ±âº» È¯°æ   
+## ê°œë°œ í™˜ê²½  
+- ê¸°ë³¸ í™˜ê²½   
     - IDE: Eclipse  
     - OS: Window  
     - GIT  
@@ -14,10 +14,10 @@
     - Junit  
 
 
-- Á¢¼Ó Base URI: `http://localhost:8080`
+- ì ‘ì† Base URI: `http://localhost:8080`
 
 
-## ºôµå(Eclipse ide È¯°æ )
+## ë¹Œë“œ(Eclipse ide í™˜ê²½ )
  1. Git Clone https://github.com/LEEBUMJOON/PreTest.git
  2. Gradle Project import
  3. Refresh Gradle proejct
@@ -25,103 +25,103 @@
  5. Run Spring Boot
 
 
-## Á¦¾à»çÇ×(ÇÊ¼ö)
-### ÇÊ¼ö»çÇ×
-- API ±â´É¸í¼¼¿¡¼­ Á¦½ÃÇÑ ±â´ÉÀ» °³¹ßÇÏ¼¼¿ä.
-- ´ÜÀ§ Å×½ºÆ® (Unit Test) ÄÚµå¸¦ °³¹ßÇÏ¿© °¢ ±â´ÉÀ» °ËÁõÇÏ¼¼¿ä.
-- ÇÁ·Î±×·¥ ¾ð¾î´Â Æò°¡¿¡ ¹Ý¿µµÇÁö ¾ÊÀ¸´Ï ÀÚÀ¯·Ó°Ô ¼±ÅÃÇÏ¼¼¿ä.
-- °¢ APIÀÇ HTTP Methodµé( GET | POST | PUT | DEL )Àº ÀÚÀ¯·Ó°Ô ¼±ÅÃÇÏ¼¼¿ä
+## ì œì•½ì‚¬í•­(í•„ìˆ˜)
+### í•„ìˆ˜ì‚¬í•­
+- API ê¸°ëŠ¥ëª…ì„¸ì—ì„œ ì œì‹œí•œ ê¸°ëŠ¥ì„ ê°œë°œí•˜ì„¸ìš”.
+- ë‹¨ìœ„ í…ŒìŠ¤íŠ¸ (Unit Test) ì½”ë“œë¥¼ ê°œë°œí•˜ì—¬ ê° ê¸°ëŠ¥ì„ ê²€ì¦í•˜ì„¸ìš”.
+- í”„ë¡œê·¸ëž¨ ì–¸ì–´ëŠ” í‰ê°€ì— ë°˜ì˜ë˜ì§€ ì•Šìœ¼ë‹ˆ ìžìœ ë¡­ê²Œ ì„ íƒí•˜ì„¸ìš”.
+- ê° APIì˜ HTTP Methodë“¤( GET | POST | PUT | DEL )ì€ ìžìœ ë¡­ê²Œ ì„ íƒí•˜ì„¸ìš”
 
-## µµ¸ÞÀÎ(ENTITY)
+## ë„ë©”ì¸(ENTITY)
 - Coupon(id code issuance applStartDate applEndDate ) 
 - User(id userid couponCode useYn cancleYn excutionDate )
 
-## API ±â´É¸í¼¼ 
-### ·£´ýÇÑ ÄÚµåÀÇ ÄíÆùÀ» N°³ »ý¼ºÇÏ¿© µ¥ÀÌÅÍº£ÀÌ½º¿¡ º¸°üÇÏ´Â API
-- count °¹¼ö ¸¸Å­ ÄíÆù »ý¼º
-- ÄíÆù ¹øÈ£ Çü½Ä 
-- "¹®ÀÚ(C)" +ÇöÀçÀÏÀÚ +"ºê·£µåÄÚµå "+ ÀÏ·Ã¹øÈ£ 17ÀÚ¸® =  C 20210320 0001 4966
-- ÄíÆùÀ¯È¿±â°£Àº ÇöÀçÀÏÀÚ ~ ÇöÀçÀÏÀÚ +3°³¿ù 
+## API ê¸°ëŠ¥ëª…ì„¸ 
+### ëžœë¤í•œ ì½”ë“œì˜ ì¿ í°ì„ Nê°œ ìƒì„±í•˜ì—¬ ë°ì´í„°ë² ì´ìŠ¤ì— ë³´ê´€í•˜ëŠ” API
+- count ê°¯ìˆ˜ ë§Œí¼ ì¿ í° ìƒì„±
+- ì¿ í° ë²ˆí˜¸ í˜•ì‹ 
+- "ë¬¸ìž(C)" +í˜„ìž¬ì¼ìž +"ë¸Œëžœë“œì½”ë“œ "+ ì¼ë ¨ë²ˆí˜¸ 17ìžë¦¬ =  C 20210320 0001 4966
+- ì¿ í°ìœ íš¨ê¸°ê°„ì€ í˜„ìž¬ì¼ìž ~ í˜„ìž¬ì¼ìž +3ê°œì›” 
 - Request (/coupon/create) 
-- Controller METHOD ¸í : createCoupon , @RequestParam(value = "count") int  count
+- Controller METHOD ëª… : createCoupon , @RequestParam(value = "count") int  count
 - SERVICE : CouponService createCoupon
 - UNIT TEST : CouponServiceTest.testCouponSave
-- Ãâ·Â ¿¹½Ã 
+- ì¶œë ¥ ì˜ˆì‹œ 
 	
 	```
-		ÄíÆù¹øÈ£ : C2021032100014508
-		ÄíÆù¹øÈ£ : C2021032100012687
-		ÄíÆù¹øÈ£ : C2021032100012248
-		ÄíÆù¹øÈ£ : C2021032100016136
-		ÄíÆù¹øÈ£ : C2021032100014594
-		ÄíÆù¹øÈ£ : C2021032100017627
-		ÄíÆù¹øÈ£ : C2021032100010025
-		ÄíÆù¹øÈ£ : C2021032100010270
-		ÄíÆù¹øÈ£ : C2021032100012794
-		ÄíÆù¹øÈ£ : C2021032100016573
+		ì¿ í°ë²ˆí˜¸ : C2021032100014508
+		ì¿ í°ë²ˆí˜¸ : C2021032100012687
+		ì¿ í°ë²ˆí˜¸ : C2021032100012248
+		ì¿ í°ë²ˆí˜¸ : C2021032100016136
+		ì¿ í°ë²ˆí˜¸ : C2021032100014594
+		ì¿ í°ë²ˆí˜¸ : C2021032100017627
+		ì¿ í°ë²ˆí˜¸ : C2021032100010025
+		ì¿ í°ë²ˆí˜¸ : C2021032100010270
+		ì¿ í°ë²ˆí˜¸ : C2021032100012794
+		ì¿ í°ë²ˆí˜¸ : C2021032100016573
 	```
 	
-### »ý¼ºµÈ ÄíÆùÁß ÇÏ³ª¸¦ »ç¿ëÀÚ¿¡°Ô Áö±ÞÇÏ´Â API
+### ìƒì„±ëœ ì¿ í°ì¤‘ í•˜ë‚˜ë¥¼ ì‚¬ìš©ìžì—ê²Œ ì§€ê¸‰í•˜ëŠ” API
 - Request ("/coupon/Issuance") 
 - Controller : CouponInfoCtrl.issuanceCoupon , @RequestParam(value = "userId") String userId
 - SERVICE : couponService.issanceCoupunForUser
 - UNIT TEST : CouponServiceTest.testIssuanceCoupon
-- Ãâ·Â¿¹½Ã 
+- ì¶œë ¥ì˜ˆì‹œ 
 	
 	```
-		ÄíÆù¹øÈ£ : C2021032100014723 »ç¿ëÀÚId : A0001
+		ì¿ í°ë²ˆí˜¸ : C2021032100014723 ì‚¬ìš©ìžId : A0001
 	```
 
-### ¹ß±ÞµÈ ÄíÆùÁß ´çÀÏ ¸¸·áµÈ ÀüÃ¼ ÄíÆù ¸ñ·ÏÀ» Á¶È¸ÇÏ´Â API
+### ë°œê¸‰ëœ ì¿ í°ì¤‘ ë‹¹ì¼ ë§Œë£Œëœ ì „ì²´ ì¿ í° ëª©ë¡ì„ ì¡°íšŒí•˜ëŠ” API
 - Request ("/coupon/getExpir") 
 - Controller : CouponInfoCtrl.getCouponExpirByDate , @RequestParam(value  = "applDate") String applDate
 - SERVICE : couponService.getCouponExpribyDate
 - UNIT TEST : CouponServiceTest.testGetCouponExpirDate
-- Ãâ·Â¿¹½Ã
+- ì¶œë ¥ì˜ˆì‹œ
 	
 	```
-		ÄíÆù¹øÈ£ : C2021032100017050  // ¸¸·áÀÏÀÚ : 20210321
-		ÄíÆù¹øÈ£ : C2021032100016879  // ¸¸·áÀÏÀÚ : 20210321
-		ÄíÆù¹øÈ£ : C2021032100017945  // ¸¸·áÀÏÀÚ : 20210321
-		ÄíÆù¹øÈ£ : C2021032100016411  // ¸¸·áÀÏÀÚ : 20210321
-		ÄíÆù¹øÈ£ : C2021032100010723  // ¸¸·áÀÏÀÚ : 20210321
-		ÄíÆù¹øÈ£ : C2021032100012293  // ¸¸·áÀÏÀÚ : 20210321
-		ÄíÆù¹øÈ£ : C2021032100010044  // ¸¸·áÀÏÀÚ : 20210321
-		ÄíÆù¹øÈ£ : C2021032100017828  // ¸¸·áÀÏÀÚ : 20210321
-		ÄíÆù¹øÈ£ : C2021032100018582  // ¸¸·áÀÏÀÚ : 20210321
-		ÄíÆù¹øÈ£ : C2021032100015012  // ¸¸·áÀÏÀÚ : 20210321
-		ÄíÆù¹øÈ£ : C2021032100011664  // ¸¸·áÀÏÀÚ : 20210321
+		ì¿ í°ë²ˆí˜¸ : C2021032100017050  // ë§Œë£Œì¼ìž : 20210321
+		ì¿ í°ë²ˆí˜¸ : C2021032100016879  // ë§Œë£Œì¼ìž : 20210321
+		ì¿ í°ë²ˆí˜¸ : C2021032100017945  // ë§Œë£Œì¼ìž : 20210321
+		ì¿ í°ë²ˆí˜¸ : C2021032100016411  // ë§Œë£Œì¼ìž : 20210321
+		ì¿ í°ë²ˆí˜¸ : C2021032100010723  // ë§Œë£Œì¼ìž : 20210321
+		ì¿ í°ë²ˆí˜¸ : C2021032100012293  // ë§Œë£Œì¼ìž : 20210321
+		ì¿ í°ë²ˆí˜¸ : C2021032100010044  // ë§Œë£Œì¼ìž : 20210321
+		ì¿ í°ë²ˆí˜¸ : C2021032100017828  // ë§Œë£Œì¼ìž : 20210321
+		ì¿ í°ë²ˆí˜¸ : C2021032100018582  // ë§Œë£Œì¼ìž : 20210321
+		ì¿ í°ë²ˆí˜¸ : C2021032100015012  // ë§Œë£Œì¼ìž : 20210321
+		ì¿ í°ë²ˆí˜¸ : C2021032100011664  // ë§Œë£Œì¼ìž : 20210321
 	```
 	
-### »ç¿ëÀÚ¿¡°Ô Áö±ÞµÈ ÄíÆùÀ» Á¶È¸ÇÏ´Â API
+### ì‚¬ìš©ìžì—ê²Œ ì§€ê¸‰ëœ ì¿ í°ì„ ì¡°íšŒí•˜ëŠ” API
 - Request ("/coupon/getusercoupon") 
 - Controller : CouponInfoCtrl.getUserCoupon , @RequestParam(value ="userid") String userId
 - SERVICE : couponService.getUserCoupon
 - UNIT TEST : CouponServiceTest.testGetUserCoupon
-- Ãâ·Â¿¹½Ã 
+- ì¶œë ¥ì˜ˆì‹œ 
 
 	```
-		»ç¿ëÀÚ id : A0001  //   ÄíÆù¹øÈ£ C2021032100015829
+		ì‚¬ìš©ìž id : A0001  //   ì¿ í°ë²ˆí˜¸ C2021032100015829
 	```
 
-### Áö±ÞµÈ ÄíÆùÁß ÇÏ³ª¸¦ »ç¿ëÇÏ´Â API  (ÄíÆù Àç»ç¿ëÀº ºÒ°¡)
+### ì§€ê¸‰ëœ ì¿ í°ì¤‘ í•˜ë‚˜ë¥¼ ì‚¬ìš©í•˜ëŠ” API  (ì¿ í° ìž¬ì‚¬ìš©ì€ ë¶ˆê°€)
 - Request ("/coupon/useCoupon") 
 - Controller : CouponInfoCtrl.useCoupon , @RequestParam(value ="code") String code 
 - SERVICE : couponService.userCouponUseByCode
 - UNIT TEST : CouponServiceTest.testUserCouponUseByCode
-- Ãâ·Â¿¹½Ã 
+- ì¶œë ¥ì˜ˆì‹œ 
 
 	```
-		»ç¿ëÀÚ id : A0001  //   ÄíÆù¹øÈ£ C202103210001370 // »ç¿ë¿©ºÎ: Y // »ç¿ëÀÏÀÚ : 20210321
+		ì‚¬ìš©ìž id : A0001  //   ì¿ í°ë²ˆí˜¸ C202103210001370 // ì‚¬ìš©ì—¬ë¶€: Y // ì‚¬ìš©ì¼ìž : 20210321
 	```
 
-###  Áö±ÞµÈ ÄíÆùÁß ÇÏ³ª¸¦ »ç¿ë Ãë¼ÒÇÏ´Â API (Ãë¼ÒµÈ ÄíÆù Àç»ç¿ë °¡´É)
+###  ì§€ê¸‰ëœ ì¿ í°ì¤‘ í•˜ë‚˜ë¥¼ ì‚¬ìš© ì·¨ì†Œí•˜ëŠ” API (ì·¨ì†Œëœ ì¿ í° ìž¬ì‚¬ìš© ê°€ëŠ¥)
 - Request ("/coupon/cancleCoupon") 
 - Controller : CouponInfoCtrl.cancleCoupon , @RequestParam(value ="code") String code 
 - SERVICE : couponService.userCouponUseByCode
 - UNIT TEST : CouponServiceTest.testUserCouponUseByCode
-- Ãâ·Â¿¹½Ã 
+- ì¶œë ¥ì˜ˆì‹œ 
 
 	```
-		»ç¿ëÀÚ id : A0001  //   ÄíÆù¹øÈ£ : C2021032100018897 // »ç¿ë¿©ºÎ :   // Ãë¼Ò¿©ºÎ  : Y // Ãë¼ÒÀÏÀÚ : 20210321
+		ì‚¬ìš©ìž id : A0001  //   ì¿ í°ë²ˆí˜¸ : C2021032100018897 // ì‚¬ìš©ì—¬ë¶€ :   // ì·¨ì†Œì—¬ë¶€  : Y // ì·¨ì†Œì¼ìž : 20210321
 	```
