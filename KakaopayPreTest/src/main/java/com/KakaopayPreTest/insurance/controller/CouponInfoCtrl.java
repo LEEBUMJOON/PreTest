@@ -120,5 +120,19 @@ public class CouponInfoCtrl {
 		
 		return new ResponseEntity<>(userListDto, HttpStatus.OK);
 	}
+	
+	/**
+	 * 발급된 쿠폰중 만료 현재일자 + expDay 일전 사용자(userId)에게 메세지(“쿠폰이 3일 후 만료됩니다.”)를 발송
+	 * @param userId
+	 * @param expDay
+	 * @return
+	 */
+	@GetMapping("/coupon/getexpcouponexpday")
+	public ResponseEntity<?>getExpCouponExpDay(@RequestParam(value = "userId") String userId , @RequestParam(value = "expday") int expDay){
+		String expMessage = "";
+		expMessage = couponService.getExpCouponAnnou(userId, expDay);
+		
+		return new ResponseEntity<>(expMessage, HttpStatus.OK);
+	}
 
 }

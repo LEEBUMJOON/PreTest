@@ -1,6 +1,7 @@
 package com.KakaopayPreTest.insurance.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -187,6 +188,43 @@ public class CouponService {
 		}
 		 userListDto.setUserList(userList);
 		return userListDto;
+	}
+	
+	/**
+	 * 현재일자 + expDay 기준으로 만료되는 쿠폰 존재지 안내
+	 * @param expDay
+	 * @param userId
+	 * @return
+	 */
+	public String getExpCouponAnnou(String userId , int expDay) {
+		String expMessage = "";
+		
+		// 지급퇸 쿠폰 목록 조회 
+		UserListDto userListDto = getUserCoupon(userId);
+		ArrayList<User> userList = userListDto.getUserList();
+		HashMap<String,User> userMap = new HashMap<String ,User>();
+		for(User userCoupon : userList) {
+			userMap.put(userCoupon.getCouponCode(), userCoupon);
+		}
+	
+	boolean expFlag = false;
+	CouponLitDto couponLitDto = getCouponExpribyDate(DateUtil.addDay(DateUtil.getCurrentDate(""), expDay));
+	ArrayList<Coupon> couponExpList = couponLitDto.getCouponList();
+		for(Coupon couponExp : couponExpList) {
+			if(!StringUtil.isEmpty(couponExp.getIssuance())&& couponExp.getIssuance().equals("Y")) {
+				User userExp = userMap.get(couponExp.getCode());
+				if(userExp != null) {		
+					expFlag = true;
+					break;
+				}							
+			}			
+		}
+		
+		if (expFlag == true) {
+			expMessage = "쿠폰이 3일 후 만료됩니다";
+		}
+						
+		return expMessage;
 	}
 	
 }

@@ -1,6 +1,7 @@
 package com.KakaopayPreTest.insurance.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -309,6 +310,44 @@ class CouponServiceTest {
 					+ " // " + "사용여부 :  " + userCancleCopon.getUseYn() + " // 취소여부  : " + userCancleCopon.getCancleYn()+  " // " + "취소일자" + userCancleCopon.getExcutionDate());
 				
 		}
+		
+	}
+	
+	@Test
+	void testGetCouponExpAnnoun() {
+		
+		//쿠폰 발급
+		CouponLitDto couponListDto = new CouponLitDto();  
+		ArrayList<Coupon> couponList  = new ArrayList<Coupon>();
+		String code = "";
+		int cNum ;
+		double  cRandomNumber;
+		int count = 10;
+		for (int i = 0; i <= count; i++) {
+			Coupon coupon = new Coupon();
+			cRandomNumber = Math.random();
+			cNum = (int) (cRandomNumber * 10000) + 1;
+			code = ConstantsVariable.DEFAULT_PRE_STRING + DateUtil.getCurrentDate("") + "0001" + String.valueOf(cNum);
+			coupon.setCode(code);
+			coupon.setApplStartDate(DateUtil.getCurrentDate(""));
+			coupon.setApplEndDate(DateUtil.addDay(DateUtil.getCurrentDate(""), 3));
+			coupon.setIssuance("N");
+			couponList.add(coupon);
+		}
+		
+		couponListDto.setCouponList(couponList);
+		
+		couponService.couponSave(couponListDto);
+		
+		 // 쿠폰 지급 
+		User user = couponService.issanceCoupunForUser("A0001");		
+		// 지급된 쿠폰 번호 
+		System.out.println("쿠폰번호 : " + user.getCouponCode());
+		
+		
+		String message  = couponService.getExpCouponAnnou("A0001",3);
+		System.out.println(message);
+
 		
 	}
 
