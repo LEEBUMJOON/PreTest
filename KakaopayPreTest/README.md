@@ -36,6 +36,31 @@
 - Coupon(id code issuance applStartDate applEndDate ) 
 - User(id userid couponCode useYn cancleYn excutionDate )
 
+
+## Source 목록
+### Controller
+- CouponInfoCtrl.java 
+
+### Domain
+- Coupon.java
+- User.java
+
+### Repository
+- CouponRepository.java
+- UserRepository.java
+
+### Service 
+- CouponService.java
+
+### DTO
+- CouponLitDto.java
+- UserListDto.java
+
+### UTIL CLASS
+- DateUtil.java
+- StringUtil.java
+
+
 ## API 기능명세 
 ### 랜덤한 코드의 쿠폰을 N개 생성하여 데이터베이스에 보관하는 API
 - count 갯수 만큼 쿠폰 생성
