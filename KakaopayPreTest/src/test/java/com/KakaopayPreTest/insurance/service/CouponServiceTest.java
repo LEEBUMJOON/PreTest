@@ -91,7 +91,7 @@ class CouponServiceTest {
 		User user = couponService.issanceCoupunForUser("A0001");
 		
 		// 지급된 쿠폰 번호 
-		System.out.println("쿠폰번호 : " + user.getCouponCode());
+		System.out.println("쿠폰번호 : " + user.getCouponCode() + "   사용자Id : " + user.getUserID());
 				
 	}
 	
@@ -108,12 +108,18 @@ class CouponServiceTest {
 		int cNum ;
 		double  cRandomNumber;
 		int count = 10;
+		String cStr = "";
 		for (int i = 0; i <= count; i++) {
 			Coupon coupon = new Coupon();
 			cRandomNumber = Math.random();
 			cNum = (int) (cRandomNumber * 10000) + 1;
-			String strNum = StringUtil.lpad(String.valueOf(cNum), 4, '0');
-			code = ConstantsVariable.DEFAULT_PRE_STRING + DateUtil.getCurrentDate("") + "0001" + strNum;
+			
+			if (String.valueOf(cNum).length() < 4) {
+				cStr = StringUtil.lpad(String.valueOf(cNum), 4, '0');
+			}else {
+				cStr = String.valueOf(cNum);
+			}
+			code = ConstantsVariable.DEFAULT_PRE_STRING + DateUtil.getCurrentDate("") + "0001" + cStr;
 			coupon.setCode(code);
 			coupon.setApplStartDate(DateUtil.getCurrentDate(""));
 			coupon.setApplEndDate(DateUtil.getCurrentDate(""));
@@ -300,7 +306,7 @@ class CouponServiceTest {
 		ArrayList<User> userListCancleRtn = userListDtoCancleRtn.getUserList();
 		for (User userCancleCopon : userListCancleRtn) {			
 			System.out.println("사용자 id : " + userCancleCopon.getUserID() + "  //  " + " 쿠폰번호 : " + userCancleCopon.getCouponCode()
-					+ " // " + "사용여부 :  " + userCancleCopon.getUseYn() + "취소여부  : " + userCancleCopon.getCancleYn()+  " // " + "사용일자 : " + userCancleCopon.getExcutionDate());
+					+ " // " + "사용여부 :  " + userCancleCopon.getUseYn() + " // 취소여부  : " + userCancleCopon.getCancleYn()+  " // " + "취소일자" + userCancleCopon.getExcutionDate());
 				
 		}
 		

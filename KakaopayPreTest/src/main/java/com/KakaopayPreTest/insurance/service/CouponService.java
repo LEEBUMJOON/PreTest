@@ -172,7 +172,7 @@ public class CouponService {
 		UserListDto userListDto = new UserListDto();
 		ArrayList<User> userList = userRepository.getUserCouponByCode(couponCode);		
 		for (User userCoupon : userList) {
-			if (useCls.equals("U") &&  ( userCoupon.getUseYn().equals("") || userCoupon.getCancleYn().equals("Y") ) ) {				
+			if (useCls.equals("U") &&  (StringUtil.isEmpty(userCoupon.getUseYn() )|| userCoupon.getCancleYn().equals("Y") ) ) {				
 				userCoupon.setUseYn("Y");
 				userCoupon.setExcutionDate(DateUtil.getCurrentDate(""));
 				
