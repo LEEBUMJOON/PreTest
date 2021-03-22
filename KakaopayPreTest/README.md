@@ -66,8 +66,7 @@
 - count 갯수 만큼 쿠폰 생성
 - 쿠폰 번호 형식 아래 형태로 가정 한다. 
 - 임의의 브랜드 코드 "0001" 로 지정 후 생성.  
-- "문자(C)(1)" +현재일자(6) +"브랜드코드(4) "+ 일련번호(4) 17자리 =  C 20210320 0001 4966
-- 쿠폰유효기간: 현재일자 ~ 현재일자 +3개월
+- "문자(C)(1)" +현재일자(6) +"브랜드코드(4) "+ 일련번호(4) 17자리 =  C 20210320 0001 4966 
 - Request (/coupon/create) 
 - Controller METHOD 명 : createCoupon , @RequestParam(value = "count") int  count
 - SERVICE : CouponService createCoupon
@@ -89,6 +88,7 @@
 	
 ### 생성된 쿠폰중 하나를 사용자에게 지급하는 API
 - Request ("/coupon/Issuance") 
+- 쿠폰유효기간: 현재일자 ~ 현재일자 +3개월 로 임의로 지정 
 - Controller : CouponInfoCtrl.issuanceCoupon , @RequestParam(value = "userId") String userId
 - SERVICE : couponService.issanceCoupunForUser
 - UNIT TEST : CouponServiceTest.testIssuanceCoupon
