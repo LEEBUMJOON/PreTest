@@ -78,8 +78,8 @@ class CouponServiceTest {
 			cNum = (int) (cRandomNumber * 10000) + 1;
 			code = ConstantsVariable.DEFAULT_PRE_STRING + DateUtil.getCurrentDate("") + "0001" + String.valueOf(cNum);
 			coupon.setCode(code);
-			coupon.setApplStartDate(DateUtil.getCurrentDate(""));
-			coupon.setApplEndDate(DateUtil.addMonth(DateUtil.getCurrentDate(""), 3));
+//			coupon.setApplStartDate(DateUtil.getCurrentDate(""));
+//			coupon.setApplEndDate(DateUtil.addMonth(DateUtil.getCurrentDate(""), 3));
 			coupon.setIssuance("N");
 			couponList.add(coupon);
 		}
@@ -149,29 +149,9 @@ class CouponServiceTest {
 	 */
 	@Test
 	void testGetUserCoupon() {
-		
-		//쿠폰 발급
-				CouponLitDto couponListDto = new CouponLitDto();  
-				ArrayList<Coupon> couponList  = new ArrayList<Coupon>();
-				String code = "";
-				int cNum ;
-				double  cRandomNumber;
-				int count = 10;
-				for (int i = 0; i <= count; i++) {
-					Coupon coupon = new Coupon();
-					cRandomNumber = Math.random();
-					cNum = (int) (cRandomNumber * 10000) + 1;
-					code = ConstantsVariable.DEFAULT_PRE_STRING + DateUtil.getCurrentDate("") + "0001" + String.valueOf(cNum);
-					coupon.setCode(code);
-					coupon.setApplStartDate(DateUtil.getCurrentDate(""));
-					coupon.setApplEndDate(DateUtil.addMonth(DateUtil.getCurrentDate(""), 3));
-					coupon.setIssuance("N");
-					couponList.add(coupon);
-				}
-				
-				couponListDto.setCouponList(couponList);
-				
-				couponService.couponSave(couponListDto);
+			
+				//쿠폰생성 
+				 couponService.createCoupon(10);
 				
 				 // 쿠폰 지급 
 				User user = couponService.issanceCoupunForUser("A0001");
@@ -179,6 +159,11 @@ class CouponServiceTest {
 				// 지급된 쿠폰 번호 
 				System.out.println("쿠폰번호 : " + user.getCouponCode());
 		
+				List<Coupon> couponList = couponRepository.findAll();
+				for(Coupon coupon : couponList) { 
+					System.out.println("쿠폰번호" + coupon.getCode() + " // " + coupon.getIssuance() + " // " + coupon.getApplStartDate() + " // " + coupon.getApplEndDate());
+					 
+				}
 				
 				// 지급퇸 쿠폰 목록 조회 
 				UserListDto userListDto = couponService.getUserCoupon("A0001");
@@ -198,30 +183,10 @@ class CouponServiceTest {
 	 */
 	@Test
 	void testUserCouponUseByCode() {
-		
-		//쿠폰 발급
-		CouponLitDto couponListDto = new CouponLitDto();  
-		ArrayList<Coupon> couponList  = new ArrayList<Coupon>();
-		String code = "";
-		int cNum ;
-		double  cRandomNumber;
-		int count = 10;
-		for (int i = 0; i <= count; i++) {
-			Coupon coupon = new Coupon();
-			cRandomNumber = Math.random();
-			cNum = (int) (cRandomNumber * 10000) + 1;
-			code = ConstantsVariable.DEFAULT_PRE_STRING + DateUtil.getCurrentDate("") + "0001" + String.valueOf(cNum);
-			coupon.setCode(code);
-			coupon.setApplStartDate(DateUtil.getCurrentDate(""));
-			coupon.setApplEndDate(DateUtil.addMonth(DateUtil.getCurrentDate(""), 3));
-			coupon.setIssuance("N");
-			couponList.add(coupon);
-		}
-		
-		couponListDto.setCouponList(couponList);
-		
-		couponService.couponSave(couponListDto);
-		
+
+		//쿠폰생성 
+		 couponService.createCoupon(10);
+		 
 		 // 쿠폰 지급 
 		User user = couponService.issanceCoupunForUser("A0001");		
 		// 지급된 쿠폰 번호 
@@ -254,29 +219,9 @@ class CouponServiceTest {
 	@Test
 	void testUserCouponUseByCode2() {
 		
-		//쿠폰 발급
-		CouponLitDto couponListDto = new CouponLitDto();  
-		ArrayList<Coupon> couponList  = new ArrayList<Coupon>();
-		String code = "";
-		int cNum ;
-		double  cRandomNumber;
-		int count = 10;
-		for (int i = 0; i <= count; i++) {
-			Coupon coupon = new Coupon();
-			cRandomNumber = Math.random();
-			cNum = (int) (cRandomNumber * 10000) + 1;
-			code = ConstantsVariable.DEFAULT_PRE_STRING + DateUtil.getCurrentDate("") + "0001" + String.valueOf(cNum);
-			coupon.setCode(code);
-			coupon.setApplStartDate(DateUtil.getCurrentDate(""));
-			coupon.setApplEndDate(DateUtil.addMonth(DateUtil.getCurrentDate(""), 3));
-			coupon.setIssuance("N");
-			couponList.add(coupon);
-		}
-		
-		couponListDto.setCouponList(couponList);
-		
-		couponService.couponSave(couponListDto);
-		
+		//쿠폰생성 
+		 couponService.createCoupon(10);
+		 
 		 // 쿠폰 지급 
 		User user = couponService.issanceCoupunForUser("A0001");		
 		// 지급된 쿠폰 번호 
@@ -313,6 +258,9 @@ class CouponServiceTest {
 		
 	}
 	
+	/**
+	 * 만료 3일전 안내 
+	 */
 	@Test
 	void testGetCouponExpAnnoun() {
 		

@@ -33,8 +33,8 @@
 - 각 API의 HTTP Method들( GET | POST | PUT | DEL )은 자유롭게 선택하세요
 
 ## 도메인(ENTITY)
-- Coupon(id code issuance applStartDate applEndDate ) 
-- User(id userid couponCode useYn cancleYn excutionDate )
+- Coupon(id code(쿠폰코드) issuance(지급여부) applStartDate(생성일자) applEndDate(만료일자) ) 
+- User(id userid(고객id) couponCode(쿠폰코드) useYn(사용여부) cancleYn(취소여부) excutionDate(실행일자) )
 
 
 ## Source 목록
@@ -64,9 +64,10 @@
 ## API 기능명세 
 ### 랜덤한 코드의 쿠폰을 N개 생성하여 데이터베이스에 보관하는 API
 - count 갯수 만큼 쿠폰 생성
-- 쿠폰 번호 형식 
-- "문자(C)" +현재일자 +"브랜드코드 "+ 일련번호 17자리 =  C 20210320 0001 4966
-- 쿠폰유효기간은 현재일자 ~ 현재일자 +3개월 
+- 쿠폰 번호 형식 아래 형태로 가정 한다. 
+- 임의의 브랜드 코드 "0001" 로 지정 후 생성.  
+- "문자(C)(1)" +현재일자(6) +"브랜드코드(4) "+ 일련번호(4) 17자리 =  C 20210320 0001 4966
+- 쿠폰유효기간: 현재일자 ~ 현재일자 +3개월
 - Request (/coupon/create) 
 - Controller METHOD 명 : createCoupon , @RequestParam(value = "count") int  count
 - SERVICE : CouponService createCoupon

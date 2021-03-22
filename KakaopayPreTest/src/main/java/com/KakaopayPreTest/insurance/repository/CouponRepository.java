@@ -22,6 +22,10 @@ public interface CouponRepository extends JpaRepository<Coupon, Long >{
 	@Query(value = "SELECT * FROM COUPON  WHERE ISSUANCE = 'N' AND APPL_START_DATE <= :applDate  AND APPL_END_DATE >= :applDate ORDER BY APPL_START_DATE ASC "
 					  , nativeQuery = true)
 	List<Coupon> getNoneIssuanceCoupuon(@Param("applDate") String applDate);
+	
+	@Query(value = "SELECT * FROM COUPON  WHERE ISSUANCE = 'N' "
+			  , nativeQuery = true)
+	List<Coupon> getNoneIssuanceCoupuonNew();
 
 	/**
 	 * applDate 기준 만료된 쿠폰 목록 조회 

@@ -76,8 +76,8 @@ public class CouponService {
 			}
 			code = ConstantsVariable.DEFAULT_PRE_STRING + DateUtil.getCurrentDate("") + "0001" + cStr;
 			coupon.setCode(code); //쿠폰번호  
-			coupon.setApplStartDate(DateUtil.getCurrentDate("")); // 발급일자
-			coupon.setApplEndDate(DateUtil.addMonth(DateUtil.getCurrentDate(""), 3)); // 만료일자 
+//			coupon.setApplStartDate(DateUtil.getCurrentDate("")); // 발급일자
+//			coupon.setApplEndDate(DateUtil.addMonth(DateUtil.getCurrentDate(""), 3)); // 만료일자 
 			coupon.setIssuance("N"); // 지급여부 
 			couponList.add(coupon);
 		}
@@ -107,6 +107,15 @@ public class CouponService {
 		return couponRlt;
 	}
 	
+	@Transactional
+	public Coupon getNonIssuanceCouponByApplDateNew() {
+		List<Coupon> couponList = new ArrayList<Coupon>();
+		Coupon couponRlt = new Coupon();
+		couponList = couponRepository.getNoneIssuanceCoupuonNew();
+		couponRlt = couponList.get(0);
+		return couponRlt;
+	}
+	
 	/**
 	 * 고객 쿠폰 지급 서비스 
 	 * 현재일자 기준 유효한 쿠폰 목록 중 발급 일자가 가장 최신 건을 고객에게 지급.
@@ -116,9 +125,14 @@ public class CouponService {
 	@Transactional
 	public User issanceCoupunForUser(String userId) {
 		User userRlt = new User();
-		Coupon coupon = this.getNonIssuanceCouponByApplDate(DateUtil.getCurrentDate(""));
+//		Coupon coupon = this.getNonIssuanceCouponByApplDate(DateUtil.getCurrentDate(""));
+		Coupon coupon = this.getNonIssuanceCouponByApplDateNew();		
 		if (coupon !=null ) {
-			coupon.setIssuance("Y");
+//			Coupon updateCoupon = new Coupon();
+//			updateCoupon.setId(coupon.getId());			
+			coupon.setIssuance("Y");			
+			coupon.setApplStartDate(DateUtil.getCurrentDate(""));
+			coupon.setApplEndDate(DateUtil.addMonth(DateUtil.getCurrentDate(""), 3));
 			couponRepository.save(coupon);
 			
 			userRlt.setUserID(userId);
