@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class KakaopayPreTestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KakaopayPreTestApplication.class, args);
+			SpringApplication.run(KakaopayPreTestApplication.class, args);
+			system.out.println("hello");
+
 	}
 
 }
