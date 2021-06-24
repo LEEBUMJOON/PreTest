@@ -8,7 +8,7 @@ public class KakaopayPreTestApplication {
 
 	public static void main(String[] args) {
 			SpringApplication.run(KakaopayPreTestApplication.class, args);
-			system.out.println("hello");
+	
 
 	}
 
